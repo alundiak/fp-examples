@@ -31,6 +31,7 @@ function add2(a, b) {
 
 // console.log(add2(2, 2));
 
+
 //
 // AVOID SIDE EFFECT
 //
@@ -69,6 +70,7 @@ function sideEffect3(obj) {
 // FP - not mutating example
 function notMutate(obj) {
   let localObj = JSON.parse(JSON.stringify(obj));
+  // let localObj = Object.assign({}, obj); // pass in an empty object as the first parameter to copy the properties of obj
   delete localObj.g;
   localObj.h = 789;
   console.log('obj:', obj);
@@ -77,6 +79,115 @@ function notMutate(obj) {
 }
 
 // notMutate({f: 123, g: 456});
+
+
+// https: //medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
+function usingFreeze() {
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
+  const a = Object.freeze({
+    foo: 'Hello',
+    bar: 'world',
+    baz: '!'
+  });
+
+  a.foo = 'Goodbye';
+  // Error: Cannot assign to read only property 'foo' of object Object
+  // no error, but not changed !!!
+
+  console.log(a);
+}
+
+usingFreeze();
+
+
+//
+// First-class and higher-order functions
+//
+
+// 
+// The distinction between the two is subtle: 
+// - "higher-order" describes a mathematical concept of functions that operate on other functions, while 
+// - "first-class" is a computer science term that describes programming language entities that have NO restriction on their use.
+//
+
+function hof1(greetingFunc) {
+  if (typeof greetingFunc === 'function') {
+    greetingFunc();
+  }
+}
+var aFunc = function() {
+  console.log('Hello HOF');
+};
+
+// hof1(aFunc);
+
+//
+// CURRYING example
+// 
+// https://en.wikipedia.org/wiki/Currying
+function hof2() {
+  const firstName = 'Andrii';
+
+  return function(lastName) {
+    return firstName + ' ' + lastName;
+  };
+}
+
+// console.log(hof2()('Lundiak'));
+
+// 
+// FUNCTION COMPOSITION
+// is the process of combining two or more functions in order to produce a new function or perform some computation
+// For example, the composition f . g (the dot means “composed with”) is equivalent to f(g(x)) in JavaScript.
+
+// SIMILAR
+
+// 
+// LAMBDA CALCULUS https://en.wikipedia.org/wiki/Lambda_calculus
+// 
+
+// It is a universal model of computation that can be used to simulate any Turing machine.
+// In typed lambda calculus, functions can be applied only if they are capable of accepting the given input's "type" of data. 
+// 
+let result = (
+  function(x) {
+    return x * x;
+  }
+)(2);
+// let result = ( (x) => { return x * x; } )(2);
+// console.log(result);
+
+
+// 
+// RECURSION
+// 
+// Fibonacci example
+let entries = 0;
+
+function fib(x) {
+  console.log('entry ', entries++);
+  if (x === 0 || x === 1) {
+    return x;
+  } else {
+    return fib(x - 1) + fib(x - 2);
+  }
+}
+
+// console.log(fib(5));
+
+
+//
+// Strict versus non-strict evaluation
+//
+// 'use strict'
+// console.log(1/0);
+
+
+
+//
+// SHARED STATE
+// 
+
 
 //
 // In the presence of side effects, a program's behaviour may depend on history; that is, the order of evaluation matters. 
@@ -96,29 +207,26 @@ function pure1(a, b) {
 
 // pure1(111,144);
 
-
-
+// nice example 
+// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
 //
-// First-class and higher-order functions
-//
-
-// TODO
-
-
-
-// 
-// RECURSION
-// 
-// Fibonacci example
-let entries = 0;
-
-function fib(x) {
-  console.log('entry ', entries++);
-  if (x === 0 || x === 1) {
-    return x;
-  } else {
-    return fib(x - 1) + fib(x - 2);
-  }
-}
-
-// console.log(fib(5));
+// With shared state, the order in which function calls are made changes the result of the function calls.
+const x = {
+  val: 2
+};
+const x1 = () => x.val += 1;
+const x2 = () => x.val *= 2;
+x1();
+x2();
+// console.log(x.val); // 6
+// This example is exactly equivalent to the above, except...
+const y = {
+  val: 2
+};
+const y1 = () => y.val += 1;
+const y2 = () => y.val *= 2;
+// ...the order of the function calls is reversed...
+y2();
+y1();
+// ... which changes the resulting value:
+// console.log(y.val); // 5
