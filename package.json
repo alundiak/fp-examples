@@ -1,0 +1,23 @@
+{
+  "name": "fp-examples",
+  "version": "1.0.0",
+  "description": "Functional Programming Code Examples in JavaScript",
+  "main": "code.js",
+  "scripts": {
+    "lint": "eslint code.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alundiak/fp-examples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alundiak/fp-examples/issues"
+  },
+  "homepage": "https://github.com/alundiak/fp-examples#readme",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-plugin-react": "^7.11.1"
+  }
+}
