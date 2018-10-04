@@ -21,6 +21,8 @@ Functional Programming Code Examples in JavaScript
 
 # FP in React
 - https://logrocket.com/blog/react-url-state/
+- https://reactjs.org/docs/components-and-props.html
+- https://reactjs.org/docs/higher-order-components.html
 - https://medium.com/@planttheidea/memoize-react-components-33377d7ebb6c
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization
 

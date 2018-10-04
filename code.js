@@ -52,8 +52,16 @@ function sideEffect1(obj) {
 
 // NOT FP - modifying a static local variable, 
 function sideEffect2(obj) {
+  // let abc = 123;
+  // logic;
+
+  // if () {
+
+  // }
   // ???
 }
+
+// sideEffect2.abc
 
 // NOT FP - modifying a mutable argument passed by reference, 
 function sideEffect3(obj) {
@@ -69,8 +77,8 @@ function sideEffect3(obj) {
 
 // FP - not mutating example
 function notMutate(obj) {
-  let localObj = JSON.parse(JSON.stringify(obj));
-  // let localObj = Object.assign({}, obj); // pass in an empty object as the first parameter to copy the properties of obj
+  // let localObj = JSON.parse(JSON.stringify(obj));
+  let localObj = Object.assign({}, obj); // pass in an empty object as the first parameter to copy the properties of obj
   delete localObj.g;
   localObj.h = 789;
   console.log('obj:', obj);
@@ -81,7 +89,7 @@ function notMutate(obj) {
 // notMutate({f: 123, g: 456});
 
 
-// https: //medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
+// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
 function usingFreeze() {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
   const a = Object.freeze({
@@ -97,7 +105,8 @@ function usingFreeze() {
   console.log(a);
 }
 
-usingFreeze();
+// NOT WORKING !!!
+// usingFreeze();
 
 
 //
@@ -154,9 +163,8 @@ let result = (
     return x * x;
   }
 )(2);
-// let result = ( (x) => { return x * x; } )(2);
+// let result = (x => x * x;)(2);
 // console.log(result);
-
 
 // 
 // RECURSION
@@ -179,15 +187,21 @@ function fib(x) {
 //
 // Strict versus non-strict evaluation
 //
-// 'use strict'
-// console.log(1/0);
+function abc(){
+  'use strict';
+  console.log(2/3, 1/0);  
+  // console.log(2/3, 1/'hello');  
+}
 
+// abc();
+// TODO
 
 
 //
 // SHARED STATE
 // 
 
+// TODO
 
 //
 // In the presence of side effects, a program's behaviour may depend on history; that is, the order of evaluation matters. 
@@ -230,3 +244,10 @@ y2();
 y1();
 // ... which changes the resulting value:
 // console.log(y.val); // 5
+
+
+// JS built-in functions and FP
+
+[1,2,3,4].map(function(elem, index, arr){
+  // map is high-order function
+});
