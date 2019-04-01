@@ -1,9 +1,9 @@
 //
 // PURE FUNCTIONS
-// 
+//
 
 //
-// In functional code, the output value of a function depends only on the arguments that are passed to the function, 
+// In functional code, the output value of a function depends only on the arguments that are passed to the function,
 // so calling a function f twice with the same value for an argument x produces the same result f(x) each time;
 //
 
@@ -15,9 +15,9 @@ function add(a, b) {
 // console.log(add(2, 2));
 
 //
-// in contrast to procedures depending on a local or global state, which may produce different results at different times 
+// in contrast to procedures depending on a local or global state, which may produce different results at different times
 // when called with the same arguments but a different program state.
-// 
+//
 
 var mood = 'good';
 // NOT FP
@@ -37,20 +37,20 @@ function add2(a, b) {
 //
 // https://en.wikipedia.org/wiki/Side_effect_(computer_science)
 // Example side effects of a particular function might consist in:
-// - modifying a non-local variable, 
-// - modifying a static local variable, 
-// - modifying a mutable argument passed by reference, 
-// - performing I/O or 
+// - modifying a non-local variable,
+// - modifying a static local variable,
+// - modifying a mutable argument passed by reference,
+// - performing I/O or
 // - calling other side-effect functions.
 
-// NOT FP - modifying a non-local variable, 
+// NOT FP - modifying a non-local variable,
 var firstName = 'Andrii';
 
 function sideEffect1(obj) {
   firstName = 'NotAndrii';
 }
 
-// NOT FP - modifying a static local variable, 
+// NOT FP - modifying a static local variable,
 function sideEffect2(obj) {
   // let abc = 123;
   // logic;
@@ -63,7 +63,7 @@ function sideEffect2(obj) {
 
 // sideEffect2.abc
 
-// NOT FP - modifying a mutable argument passed by reference, 
+// NOT FP - modifying a mutable argument passed by reference,
 function sideEffect3(obj) {
   obj.h = 789; // NOT FP
   Object.assign(obj, {
@@ -113,9 +113,9 @@ function usingFreeze() {
 // First-class and higher-order functions
 //
 
-// 
-// The distinction between the two is subtle: 
-// - "higher-order" describes a mathematical concept of functions that operate on other functions, while 
+//
+// The distinction between the two is subtle:
+// - "higher-order" describes a mathematical concept of functions that operate on other functions, while
 // - "first-class" is a computer science term that describes programming language entities that have NO restriction on their use.
 //
 
@@ -124,7 +124,7 @@ function hof1(greetingFunc) {
     greetingFunc();
   }
 }
-var aFunc = function() {
+var aFunc = function () {
   console.log('Hello HOF');
 };
 
@@ -132,43 +132,43 @@ var aFunc = function() {
 
 //
 // CURRYING example
-// 
+//
 // https://en.wikipedia.org/wiki/Currying
 function hof2() {
   const firstName = 'Andrii';
 
-  return function(lastName) {
+  return function (lastName) {
     return firstName + ' ' + lastName;
   };
 }
 
 // console.log(hof2()('Lundiak'));
 
-// 
+//
 // FUNCTION COMPOSITION
 // is the process of combining two or more functions in order to produce a new function or perform some computation
 // For example, the composition f . g (the dot means “composed with”) is equivalent to f(g(x)) in JavaScript.
 
 // SIMILAR
 
-// 
+//
 // LAMBDA CALCULUS https://en.wikipedia.org/wiki/Lambda_calculus
-// 
+//
 
 // It is a universal model of computation that can be used to simulate any Turing machine.
-// In typed lambda calculus, functions can be applied only if they are capable of accepting the given input's "type" of data. 
-// 
+// In typed lambda calculus, functions can be applied only if they are capable of accepting the given input's "type" of data.
+//
 let result = (
-  function(x) {
+  function (x) {
     return x * x;
   }
 )(2);
 // let result = (x => x * x;)(2);
 // console.log(result);
 
-// 
+//
 // RECURSION
-// 
+//
 // Fibonacci example
 let entries = 0;
 
@@ -187,10 +187,10 @@ function fib(x) {
 //
 // Strict versus non-strict evaluation
 //
-function abc(){
+function abc() {
   'use strict';
-  console.log(2/3, 1/0);  
-  // console.log(2/3, 1/'hello');  
+  console.log(2 / 3, 1 / 0);
+  // console.log(2/3, 1/'hello');
 }
 
 // abc();
@@ -199,19 +199,19 @@ function abc(){
 
 //
 // SHARED STATE
-// 
+//
 
 // TODO
 
 //
-// In the presence of side effects, a program's behaviour may depend on history; that is, the order of evaluation matters. 
+// In the presence of side effects, a program's behaviour may depend on history; that is, the order of evaluation matters.
 //
 
 //
-// If there is no data dependency between two pure expressions, their order can be reversed, 
-// or they can be performed in parallel and they cannot interfere with one another (in other terms, 
+// If there is no data dependency between two pure expressions, their order can be reversed,
+// or they can be performed in parallel and they cannot interfere with one another (in other terms,
 // the evaluation of any pure expression is thread-safe).
-// 
+//
 function pure1(a, b) {
   let rndInt = Math.floor(Math.random() * Math.floor(a));
   let sqrtB = Math.sqrt(b);
@@ -221,7 +221,7 @@ function pure1(a, b) {
 
 // pure1(111,144);
 
-// nice example 
+// nice example
 // https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
 //
 // With shared state, the order in which function calls are made changes the result of the function calls.
@@ -248,6 +248,6 @@ y1();
 
 // JS built-in functions and FP
 
-[1,2,3,4].map(function(elem, index, arr){
+[1, 2, 3, 4].map(function (elem, index, arr) {
   // map is high-order function
 });

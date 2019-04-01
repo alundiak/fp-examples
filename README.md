@@ -1,5 +1,5 @@
 # fp-examples
-Functional Programming Code Examples in JavaScript
+Functional Programming Code Examples in JavaScript, React and Angular.
 
 # Theory
 - https://en.wikipedia.org/wiki/Functional_programming
@@ -25,7 +25,7 @@ Functional Programming Code Examples in JavaScript
 - https://reactjs.org/docs/higher-order-components.html
 - https://medium.com/@planttheidea/memoize-react-components-33377d7ebb6c
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization
-
+- UP
 
 # FP in Angular
 
