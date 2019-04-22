@@ -3,44 +3,26 @@ import PropTypes from 'prop-types';
 
 /* eslint react/no-multi-comp: 0 */
 
-export function FunctionalComponent() { // aka stateless function
-    return (
-        <div>
-            Hello, I am functional component.
-        </div>
-    );
+export function FunctionalComponent(props) {
+    // aka stateless function
+    const { userName } = props;
+    return <div>Hello {userName}, I am functional component.</div>;
 }
+// TODO
+// FunctionalComponent.propTypes
 
-export class PropsComponent extends React.Component {
-    state = {
-        message: 'I\'m React Component with state and props'
-    }
+// TODO add React.memo() here
+// export class MyMemoComponent extends React.memo();
 
-    render() {
-        const { message } = this.state;
-        const { a, b } = this.props;
-        return (
-            <div>
-                <p>{message} (a={a}, b={b}, a+b={a + b}) </p>
-            </div>
-        );
-    }
+export class MyPureComponent extends React.PureComponent {
+    // TODO
 }
-
-PropsComponent.propTypes = {
-    a: PropTypes.number,
-    b: PropTypes.number
-};
-
-PropsComponent.defaultProps = {
-    a: 2,
-    b: 2
-};
 
 export class StateComponent extends React.Component {
+    // aka stateful component
     state = {
-        message: 'I\'m React Component with state'
-    }
+        message: "I'm React Component with state"
+    };
 
     render() {
         const { message } = this.state;
@@ -52,21 +34,55 @@ export class StateComponent extends React.Component {
     }
 }
 
+export class StateAndPropsComponent extends React.Component {
+    static propTypes = {
+        userName: PropTypes.string.isRequired,
+        a: PropTypes.number,
+        b: PropTypes.number
+    };
+
+    static defaultProps = {
+        a: 2,
+        b: 2
+    };
+
+    state = {
+        message: "I'm React Component with state and props"
+    };
+
+    render() {
+        const { message } = this.state;
+        const { a, b, userName } = this.props;
+        return (
+            <div>
+                <p>
+                    Hello {userName}, {message} (a={a}, b={b}, a+b={a + b})
+                </p>
+            </div>
+        );
+    }
+}
+
 export function HighOrderFunctionalComponent(props) {
-    const { consumer, anotherComponent: AnotherComponent } = props;
+    const { userName, anotherComponent: AnotherComponent } = props;
     return (
         <div>
-            Hello {consumer}, I am High Order Component. And here is my wrapped component:
+            Hello {userName}, I am High Order Component. And here is my wrapped component:
             <div>
-                <AnotherComponent />
+                <AnotherComponent userName={`Modified ${userName}`} />
             </div>
         </div>
     );
 }
 
 HighOrderFunctionalComponent.propTypes = {
-    consumer: PropTypes.string,
-    anotherComponent: PropTypes.element,
+    userName: PropTypes.string,
+    anotherComponent: PropTypes.element
+};
+
+HighOrderFunctionalComponent.defaultProps = {
+    userName: '',
+    anotherComponent: <div>abc</div>
 };
 
 // Simple version passing just wrapped component

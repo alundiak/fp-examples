@@ -2,20 +2,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  FunctionalComponent,
-  PropsComponent,
-  StateComponent,
-  HighOrderFunctionalComponent,
-  withHoc
+    FunctionalComponent,
+    StateComponent,
+    StateAndPropsComponent,
+    HighOrderFunctionalComponent,
+    withHoc
 } from './code-react';
 
-// ReactDOM.render(<FunctionalComponent />, document.getElementById('app'));
-// ReactDOM.render(<StateComponent />, document.getElementById('app'));
-// ReactDOM.render(<PropsComponent a={3} b={3} />, document.getElementById('app'));
-// ReactDOM.render(<HighOrderFunctionalComponent consumer="Andrii" anotherComponent={(<FunctionalComponent />)} />, document.getElementById('app'));
-const HocComponent = withHoc(PropsComponent, { a: 99, b: 1 });
-ReactDOM.render(<HocComponent />, document.getElementById('app'));
+const FunctionProgrammingExamples = () => {
+    const HocComponent = withHoc(StateAndPropsComponent, {
+        a: 99,
+        b: 1,
+        userName: 'Andrzej'
+    });
+
+    return (
+        <React.Fragment>
+            <FunctionalComponent userName="Andrii1" />
+            <StateComponent />
+            <StateAndPropsComponent a={3} b={3} userName="Andrii2" />
+            <HighOrderFunctionalComponent
+                userName="Andrii3"
+                anotherComponent={<FunctionalComponent />}
+            />
+            <HocComponent />
+        </React.Fragment>
+    );
+};
+
+ReactDOM.render(<FunctionProgrammingExamples />, document.getElementById('app'));
 
 if (module.hot) {
-  module.hot.accept();
+    module.hot.accept();
 }

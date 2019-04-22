@@ -19,14 +19,13 @@ function add(a, b) {
 // when called with the same arguments but a different program state.
 //
 
-var mood = 'good';
+const mood = 'good';
 // NOT FP
 function add2(a, b) {
   if (mood === 'good') {
     return a + b;
-  } else {
-    return 'WTF';
   }
+    return 'WTF';
 }
 
 // console.log(add2(2, 2));
@@ -44,7 +43,7 @@ function add2(a, b) {
 // - calling other side-effect functions.
 
 // NOT FP - modifying a non-local variable,
-var firstName = 'Andrii';
+let firstName = 'Andrii';
 
 function sideEffect1(obj) {
   firstName = 'NotAndrii';
@@ -78,16 +77,15 @@ function sideEffect3(obj) {
 // FP - not mutating example
 function notMutate(obj) {
   // let localObj = JSON.parse(JSON.stringify(obj));
-  let localObj = Object.assign({}, obj); // pass in an empty object as the first parameter to copy the properties of obj
+  const localObj = Object.assign({}, obj); // pass in an empty object as the first parameter to copy the properties of obj
   delete localObj.g;
   localObj.h = 789;
   console.log('obj:', obj);
-  console.log('localObbj:', localObj);
+  console.log('localObj:', localObj);
   return localObj;
 }
 
 // notMutate({f: 123, g: 456});
-
 
 // https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
 function usingFreeze() {
@@ -108,7 +106,6 @@ function usingFreeze() {
 // NOT WORKING !!!
 // usingFreeze();
 
-
 //
 // First-class and higher-order functions
 //
@@ -124,7 +121,8 @@ function hof1(greetingFunc) {
     greetingFunc();
   }
 }
-var aFunc = function () {
+
+const aFunc = function () {
   console.log('Hello HOF');
 };
 
@@ -138,7 +136,7 @@ function hof2() {
   const firstName = 'Andrii';
 
   return function (lastName) {
-    return firstName + ' ' + lastName;
+    return `${firstName} ${lastName}`;
   };
 }
 
@@ -158,13 +156,15 @@ function hof2() {
 // It is a universal model of computation that can be used to simulate any Turing machine.
 // In typed lambda calculus, functions can be applied only if they are capable of accepting the given input's "type" of data.
 //
-let result = (
+const result1 = (
   function (x) {
     return x * x;
   }
 )(2);
-// let result = (x => x * x;)(2);
-// console.log(result);
+console.log(result1); // 4
+
+let result2 = (x => x * x)(2);
+console.log(result2); // 4
 
 //
 // RECURSION
@@ -176,26 +176,22 @@ function fib(x) {
   console.log('entry ', entries++);
   if (x === 0 || x === 1) {
     return x;
-  } else {
-    return fib(x - 1) + fib(x - 2);
   }
+  return fib(x - 1) + fib(x - 2);
 }
-
-// console.log(fib(5));
-
+console.log(fib(5));
 
 //
 // Strict versus non-strict evaluation
 //
 function abc() {
-  'use strict';
+  'use strict'; //eslint-disable-line
   console.log(2 / 3, 1 / 0);
   // console.log(2/3, 1/'hello');
 }
 
 // abc();
 // TODO
-
 
 //
 // SHARED STATE
@@ -213,8 +209,8 @@ function abc() {
 // the evaluation of any pure expression is thread-safe).
 //
 function pure1(a, b) {
-  let rndInt = Math.floor(Math.random() * Math.floor(a));
-  let sqrtB = Math.sqrt(b);
+  const rndInt = Math.floor(Math.random() * Math.floor(a));
+  const sqrtB = Math.sqrt(b);
   console.log(rndInt);
   console.log(sqrtB);
 }
@@ -248,6 +244,6 @@ y1();
 
 // JS built-in functions and FP
 
-[1, 2, 3, 4].map(function (elem, index, arr) {
+[1, 2, 3, 4].map((elem, index, arr) => {
   // map is high-order function
 });
