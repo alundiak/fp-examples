@@ -161,10 +161,10 @@ const result1 = (
     return x * x;
   }
 )(2);
-console.log(result1); // 4
+// console.log(result1); // 4
 
 let result2 = (x => x * x)(2);
-console.log(result2); // 4
+// console.log(result2); // 4
 
 //
 // RECURSION
@@ -179,7 +179,7 @@ function fib(x) {
   }
   return fib(x - 1) + fib(x - 2);
 }
-console.log(fib(5));
+// console.log(fib(5));
 
 //
 // Strict versus non-strict evaluation

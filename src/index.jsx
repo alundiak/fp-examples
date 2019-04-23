@@ -3,34 +3,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     FunctionalComponent,
+    MyMemoComponent1,
+    MyMemoComponent2,
+    MyPureComponent,
+    ThreeFunctionalComponents,
     StateComponent,
     StateAndPropsComponent,
     HighOrderFunctionalComponent,
-    withHoc
+    HocComponent
 } from './code-react';
 
-const FunctionProgrammingExamples = () => {
-    const HocComponent = withHoc(StateAndPropsComponent, {
-        a: 99,
-        b: 1,
-        userName: 'Andrzej'
-    });
+import styles from './styles';
 
-    return (
-        <React.Fragment>
-            <FunctionalComponent userName="Andrii1" />
-            <StateComponent />
-            <StateAndPropsComponent a={3} b={3} userName="Andrii2" />
-            <HighOrderFunctionalComponent
-                userName="Andrii3"
-                anotherComponent={<FunctionalComponent />}
-            />
-            <HocComponent />
-        </React.Fragment>
-    );
-};
+const FPExamples = () => (
+    <div className="main-container" style={styles}>
+        <FunctionalComponent msg="functional component" />
+        <MyPureComponent msg="pure component" />
+        <ThreeFunctionalComponents />
+        <StateComponent msg="Component with state" />
+        <StateAndPropsComponent msg="Component with state and props" a={3} b={3} />
+        <HighOrderFunctionalComponent
+            msg1="High Order Functional Component wrapping Pure Component"
+            msg2="Pure Component (wrapped by HOC)"
+            anotherComponent={MyPureComponent}
+        />
+        <HocComponent />
+        <MyMemoComponent1 msg="HOC - memo() #1" />
+        <MyMemoComponent2 msg="HOC - memo() #2" />
+    </div>
+);
 
-ReactDOM.render(<FunctionProgrammingExamples />, document.getElementById('app'));
+ReactDOM.render(<FPExamples />, document.getElementById('app'));
 
 if (module.hot) {
     module.hot.accept();
