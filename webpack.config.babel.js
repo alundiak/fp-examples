@@ -44,15 +44,16 @@ export default env => {
                 filename: 'index.html',
                 template: './src/index.html'
             }),
-            new PrettierPlugin({
-                printWidth: 100,              // Specify the length of line that the printer will wrap on. Default is 80. - eslint maxlen ?
-                tabWidth: 4,                  // Specify the number of spaces per indentation-level.
-                useTabs: false,               // Indent lines with tabs instead of spaces.
-                semi: true,                   // Print semicolons at the ends of statements.
-                singleQuote: true,
-                encoding: 'utf-8',
-                extensions: ['.jsx']
-            })
+            // new PrettierPlugin({
+            //     printWidth: 100,              // Specify the length of line that the printer will wrap on. Default is 80. - eslint maxlen ?
+            //     tabWidth: 4,                  // Specify the number of spaces per indentation-level.
+            //     useTabs: false,               // Indent lines with tabs instead of spaces.
+            //     semi: true,                   // Print semicolons at the ends of statements.
+            //     singleQuote: true,
+            //     encoding: 'utf-8',
+            //     extensions: ['.jsx']
+            // })
+            // Prettier does have issue with func-name eslint rule (anonymous func change with no spaces.)
         ]),
 
         devServer: {

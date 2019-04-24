@@ -15,6 +15,7 @@ Functional Programming Code Examples in JavaScript, React and Angular.
 - https://codeburst.io/functional-programming-in-javascript-e57e7e28c0e5
 - http://www.cse.chalmers.se/~rjmh/Papers/whyfp.pdf
 - https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming
+- https://medium.freecodecamp.org/discover-the-power-of-first-class-functions-fd0d7b599b69
 
 # Tools
 - https://github.com/stoeffel/awesome-fp-js
@@ -25,7 +26,7 @@ Functional Programming Code Examples in JavaScript, React and Angular.
 - https://reactjs.org/docs/higher-order-components.html
 - https://medium.com/@planttheidea/memoize-react-components-33377d7ebb6c
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization
-- UP
+-
 
 # FP in Angular
 

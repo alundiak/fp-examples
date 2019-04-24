@@ -1,3 +1,11 @@
+/* eslint func-names: 0 */
+/* eslint no-unused-vars: 0 */
+/* eslint no-param-reassign: 0 */
+/* eslint no-shadow: 0 */
+/* eslint no-plusplus: 0 */
+/* eslint no-return-assign: 0 */
+/* eslint array-callback-return: 0 */
+
 //
 // PURE FUNCTIONS
 //
@@ -25,7 +33,7 @@ function add2(a, b) {
   if (mood === 'good') {
     return a + b;
   }
-    return 'WTF';
+  return 'WTF';
 }
 
 // console.log(add2(2, 2));
@@ -116,6 +124,13 @@ function usingFreeze() {
 // - "first-class" is a computer science term that describes programming language entities that have NO restriction on their use.
 //
 
+// https://en.wikipedia.org/wiki/Higher-order_function
+// example
+const twice = (f, v) => f(f(v));
+const add3 = v => v + 3;
+// twice(add3, 7); // 13
+
+// Kind of my example.
 function hof1(greetingFunc) {
   if (typeof greetingFunc === 'function') {
     greetingFunc();
@@ -143,6 +158,26 @@ function hof2() {
 // console.log(hof2()('Lundiak'));
 
 //
+// CLOSURE - High Order Function ? which just return another function?
+// https://en.wikipedia.org/wiki/Closure_(computer_programming)
+// "In programming languages, a closure, also lexical closure or function closure,
+// is a technique for implementing lexically scoped name binding in a language with first-class functions."
+//
+// https://medium.freecodecamp.org/discover-the-power-of-first-class-functions-fd0d7b599b69
+function createGenerator(prefix) {
+  let index = 0;
+  return function generateNewID() {
+    index++;
+    return prefix + index.toString();
+  }
+}
+let generateNewID = createGenerator("btn");
+// console.log(generateNewID()); //btn1
+// console.log(generateNewID()); //btn2
+// console.log(generateNewID()); //btn3
+// Using closure, we can create a function with private state.
+
+//
 // FUNCTION COMPOSITION
 // is the process of combining two or more functions in order to produce a new function or perform some computation
 // For example, the composition f . g (the dot means “composed with”) is equivalent to f(g(x)) in JavaScript.
@@ -159,11 +194,10 @@ function hof2() {
 const result1 = (
   function (x) {
     return x * x;
-  }
-)(2);
+  }(2));
 // console.log(result1); // 4
 
-let result2 = (x => x * x)(2);
+const result2 = (x => x * x)(2);
 // console.log(result2); // 4
 
 //

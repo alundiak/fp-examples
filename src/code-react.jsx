@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 /* eslint react/no-multi-comp: 0 */
+
+import React from 'react';
+// import PropTypes from 'prop-types';
 
 export function FunctionalComponent(props) {
     // aka stateless function
@@ -10,51 +10,6 @@ export function FunctionalComponent(props) {
 }
 // TODO
 // FunctionalComponent.propTypes
-
-//
-// Function life - idealistic functional flow
-//
-
-const myData = {
-    pageName: 'Great Page',
-    pageData: [
-        {
-            id: 1,
-            name: 'Item 1'
-        },
-        {
-            id: 2,
-            name: 'Item 2'
-        }
-    ]
-};
-
-const ItemFC = ({ id, name }) => (
-    <li>
-        <span>{id}</span> | <span>{name}</span>
-    </li>
-);
-
-/* eslint arrow-parens: 0 */
-const ListFC = props => {
-    const { listData } = props;
-    return (
-        <ul>
-            {listData.map(itemData => (
-                <ItemFC key={itemData.id} {...itemData} />
-            ))}
-        </ul>
-    );
-};
-
-const PageFC = ({ pageName, pageData }) => (
-    <div style={{ border: '1px solid red' }}>
-        <h4>{pageName}</h4>
-        <ListFC listData={pageData} />
-    </div>
-);
-
-export const ThreeFunctionalComponents = () => <PageFC {...myData} />;
 
 export class MyPureComponent extends React.PureComponent {
     // aka stateless pure component
@@ -77,7 +32,7 @@ export class StateComponent extends React.Component {
 
     onClick = () => {
         this.setState({
-            message: 'You clicked on statful component'
+            message: 'You clicked on stateful component'
         });
     };
 
@@ -94,62 +49,64 @@ export class StateComponent extends React.Component {
 }
 
 export class StateAndPropsComponent extends React.Component {
-    static propTypes = {
-        msg: PropTypes.string.isRequired,
-        a: PropTypes.number,
-        b: PropTypes.number
-    };
-
-    static defaultProps = {
-        a: 2,
-        b: 2
-    };
+    // static propTypes = {
+    //     msg: PropTypes.string.isRequired,
+    // };
 
     state = {
-        message: 'I am '
+        message: `I am ${this.props.msg}` // eslint-disable-line
+    };
+
+    onClick = () => {
+        this.setState({
+            message: 'You clicked on stateful component with pops.'
+        });
     };
 
     render() {
         const { message } = this.state;
-        const { a, b, msg } = this.props;
+        const { msg } = this.props;
         return (
-            <div>
+            <div onClick={this.onClick}>
                 <p>
-                    {message} {msg} (a={a}, b={b}, a+b={a + b})
+                    {message} {msg} Click Me.
                 </p>
             </div>
         );
     }
 }
 
-export function HighOrderFunctionalComponent(props) {
+//
+// JS:
+// A Higher-Order Function is a FUNCTION that takes another FUNCTION as an input, returns a FUNCTION or does both.
+// ReactJS:
+// https://reactjs.org/docs/higher-order-components.html
+// A Higher-Order Component is a FUNCTION that takes a COMPONENT and returns a new COMPONENT.
+// A HOC is a pure function with zero side-effects.
+// Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+// There are similarities between HOCs and a pattern called container components.
+// Container components are part of a strategy of separating responsibility between high-level and low-level concerns.
+// HOCs are common in third-party React libraries, such as Redux’s connect.
+//
+
+//
+// Simple version passing just wrapped component
+//
+export function HocFunc(props) {
     const { msg1, msg2, anotherComponent: AnotherComponent } = props;
     return (
         <div>
             I am {msg1}, and here is my wrapped component:
-            <div style={{ marginLeft: '20px' }}>
+            <div>
                 <AnotherComponent msg={msg2} />
             </div>
         </div>
     );
 }
 
-HighOrderFunctionalComponent.propTypes = {
-    msg1: PropTypes.string,
-    msg2: PropTypes.string,
-    anotherComponent: PropTypes.func
-    // anotherComponent: PropTypes.element
-    // anotherComponent: PropTypes.node
-};
-
-HighOrderFunctionalComponent.defaultProps = {
-    msg1: '',
-    msg2: '',
-    anotherComponent: <div>abc</div>
-};
-
-// Simple version passing just wrapped component
+//
 // Advanced version passing data and using data after change/?mutate?/composing in withHoc
+//
 // FUNCTION
 const createHOC = (WrappedComponent, data) => {
     // CLASS
@@ -165,19 +122,29 @@ const createHOC = (WrappedComponent, data) => {
     return HocClass;
 };
 
-export const HocComponent = createHOC(StateAndPropsComponent, {
-    a: 99,
-    b: 1,
+export const CreatedWithHocComponent = createHOC(StateAndPropsComponent, {
     msg: 'Stateful component wrapped by HOC'
 });
+// typeof HocComponent => "function"
 
 //
 // HOC + Memoization
 //
-export const MyMemoComponent1 = React.memo(FunctionalComponent);
+export const MyMemoComponentWithFuncComp = React.memo(FunctionalComponent);
 
 /* eslint prefer-arrow-callback: 0 */
-export const MyMemoComponent2 = React.memo(function FunctionalComponent2(props) {
+export const MyMemoComponentWithRegularFunc = React.memo(function FunctionalComponent2(props) {
     const { msg } = props;
-    return <div>I am FunctionalComponent2 inside of {msg}.</div>;
+    return <div>I am FunctionalComponent2 (regular function) inside of {msg}.</div>;
+});
+
+/* eslint func-names: 0 */
+export const MyMemoComponentWithUnNamedFunc = React.memo(function (props) {
+    const { msg } = props;
+    return <div>I am FunctionalComponent3 (via unnamed func.) inside of {msg}.</div>;
+});
+
+export const MyMemoComponentWithFatArrow = React.memo((props) => {
+    const { msg } = props;
+    return <div>I am FunctionalComponent4 (via fat arrow func.) inside of {msg}.</div>;
 });

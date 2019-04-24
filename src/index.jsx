@@ -3,37 +3,52 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     FunctionalComponent,
-    MyMemoComponent1,
-    MyMemoComponent2,
     MyPureComponent,
-    ThreeFunctionalComponents,
     StateComponent,
     StateAndPropsComponent,
-    HighOrderFunctionalComponent,
-    HocComponent
+    HocFunc,
+    CreatedWithHocComponent,
+    MyMemoComponentWithFuncComp,
+    MyMemoComponentWithRegularFunc,
+    MyMemoComponentWithUnNamedFunc,
+    MyMemoComponentWithFatArrow
 } from './code-react';
+import {
+    ThreeFunctionalComponents,
+    UsersAndStocks
+ } from './more-reality';
 
 import styles from './styles';
 
 const FPExamples = () => (
-    <div className="main-container" style={styles}>
+    <div className="container" style={styles}>
         <FunctionalComponent msg="functional component" />
         <MyPureComponent msg="pure component" />
-        <ThreeFunctionalComponents />
         <StateComponent msg="Component with state" />
         <StateAndPropsComponent msg="Component with state and props" a={3} b={3} />
-        <HighOrderFunctionalComponent
+        <HocFunc
             msg1="High Order Functional Component wrapping Pure Component"
             msg2="Pure Component (wrapped by HOC)"
             anotherComponent={MyPureComponent}
         />
-        <HocComponent />
-        <MyMemoComponent1 msg="HOC - memo() #1" />
-        <MyMemoComponent2 msg="HOC - memo() #2" />
+        <CreatedWithHocComponent />
+        <MyMemoComponentWithFuncComp msg="HOC - memo() #1" />
+        <MyMemoComponentWithRegularFunc msg="HOC - memo() #2" />
+        <MyMemoComponentWithUnNamedFunc msg="HOC - memo() #3" />
+        <MyMemoComponentWithFatArrow msg="HOC - memo() #4" />
     </div>
 );
 
-ReactDOM.render(<FPExamples />, document.getElementById('app'));
+const MoreReality = () => (
+    <div className="container">
+        <ThreeFunctionalComponents />
+        <br />
+        <UsersAndStocks />
+    </div>
+);
+
+// ReactDOM.render(<FPExamples />, document.getElementById('app'));
+ReactDOM.render(<MoreReality />, document.getElementById('app'));
 
 if (module.hot) {
     module.hot.accept();
