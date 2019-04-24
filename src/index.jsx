@@ -47,8 +47,8 @@ const MoreReality = () => (
     </div>
 );
 
-// ReactDOM.render(<FPExamples />, document.getElementById('app'));
-ReactDOM.render(<MoreReality />, document.getElementById('app'));
+ReactDOM.render(<FPExamples />, document.getElementById('app'));
+// ReactDOM.render(<MoreReality />, document.getElementById('app'));
 
 if (module.hot) {
     module.hot.accept();

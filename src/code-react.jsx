@@ -27,12 +27,12 @@ export class MyPureComponent extends React.PureComponent {
 export class StateComponent extends React.Component {
     // aka stateful component
     state = {
-        message: "I'm React Component with state. Click Me."
+        message: "I am Component with state only. "
     };
 
     onClick = () => {
         this.setState({
-            message: 'You clicked on stateful component'
+            message: 'You clicked on stateful component. '
         });
     };
 
@@ -41,8 +41,13 @@ export class StateComponent extends React.Component {
         /* eslint jsx-a11y/no-static-element-interactions: 0 */
         const { message } = this.state;
         return (
-            <div onClick={this.onClick}>
-                <strong>{message}</strong>
+            <div>
+                <span>{message} </span>
+                <button
+                    type="button"
+                    className="btn btn-sm btn-link"
+                    onClick={this.onClick}>Click Me
+                </button>
             </div>
         );
     }
@@ -54,23 +59,27 @@ export class StateAndPropsComponent extends React.Component {
     // };
 
     state = {
-        message: `I am ${this.props.msg}` // eslint-disable-line
+        message: `I am ${this.props.msg}. ` // eslint-disable-line
     };
 
     onClick = () => {
         this.setState({
-            message: 'You clicked on stateful component with pops.'
+            message: 'You clicked on stateful component with pops. '
         });
     };
 
     render() {
         const { message } = this.state;
-        const { msg } = this.props;
         return (
             <div onClick={this.onClick}>
-                <p>
-                    {message} {msg} Click Me.
-                </p>
+                <span>
+                    {message}
+                </span>
+                <button
+                    type="button"
+                    className="btn btn-sm btn-link"
+                    onClick={this.onClick}>Click Me
+                </button>
             </div>
         );
     }
