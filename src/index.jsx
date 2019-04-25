@@ -11,7 +11,11 @@ import {
     MyMemoComponentWithFuncComp,
     MyMemoComponentWithRegularFunc,
     MyMemoComponentWithUnNamedFunc,
-    MyMemoComponentWithFatArrow
+    MyMemoComponentWithFatArrow,
+    ThePowerOfHooks,
+    Name,
+    ReversedName
+    // WithAllMyHeart
 } from './code-react';
 import {
     ThreeFunctionalComponents,
@@ -22,8 +26,8 @@ import styles from './styles';
 
 const FPExamples = () => (
     <div className="container" style={styles}>
-        <FunctionalComponent msg="functional component" />
-        <MyPureComponent msg="pure component" />
+        <FunctionalComponent msg="Functional Component" />
+        <MyPureComponent msg="Pure Component" />
         <StateComponent msg="Component with state" />
         <StateAndPropsComponent msg="Component with state and props" a={3} b={3} />
         <HocFunc
@@ -36,6 +40,11 @@ const FPExamples = () => (
         <MyMemoComponentWithRegularFunc msg="HOC - memo() #2" />
         <MyMemoComponentWithUnNamedFunc msg="HOC - memo() #3" />
         <MyMemoComponentWithFatArrow msg="HOC - memo() #4" />
+        <ThePowerOfHooks />
+        <ThePowerOfHooks msg="Use Hooks and be happy." />
+        <Name>Hello</Name>
+        <ReversedName>Hello</ReversedName>
+        {/* <WithAllMyHeart /> */}
     </div>
 );
 

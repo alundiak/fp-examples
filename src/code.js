@@ -136,26 +136,13 @@ function hof1(greetingFunc) {
     greetingFunc();
   }
 }
+// Not sure if it's HOF, because it doesn't return, it DOES execute.
 
 const aFunc = function () {
   console.log('Hello HOF');
 };
 
 // hof1(aFunc);
-
-//
-// CURRYING example
-//
-// https://en.wikipedia.org/wiki/Currying
-function hof2() {
-  const firstName = 'Andrii';
-
-  return function (lastName) {
-    return `${firstName} ${lastName}`;
-  };
-}
-
-// console.log(hof2()('Lundiak'));
 
 //
 // CLOSURE - High Order Function ? which just return another function?
@@ -177,9 +164,39 @@ let generateNewID = createGenerator("btn");
 // console.log(generateNewID()); //btn3
 // Using closure, we can create a function with private state.
 
+
+//
+// CURRYING example
+//
+// https://en.wikipedia.org/wiki/Currying
+
+const notCurry = (x, y, z) => x + y + z; // a regular function
+const curry = x => y => z => x + y + z; // a curry function
+
+const sum = x => y => x + y;
+// returns the number 3
+// sum(2)(1);
+// returns a function y => 2 + y
+// sum(2);
+
+function hofCurry() {
+  const firstName = 'Andrii';
+
+  return function (lastName) {
+    return `${firstName} ${lastName}`;
+  };
+}
+// console.log(hofCurry()('Lundiak1'));
+
+function hofCurry2() {
+  return (lastName) => `Andrii ${lastName}`;
+}
+// console.log(hofCurry2()('Lundiak2'));
+
+
 //
 // FUNCTION COMPOSITION
-// is the process of combining two or more functions in order to produce a new function or perform some computation
+// is the process of combining two or more FUNCTIONs in order to produce a new FUNCTION or perform some computation
 // For example, the composition f . g (the dot means “composed with”) is equivalent to f(g(x)) in JavaScript.
 
 // SIMILAR
