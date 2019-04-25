@@ -119,7 +119,7 @@ export function HocFunc(props) {
 // FUNCTION
 const createHOC = (WrappedComponent, data) => {
     // CLASS
-    class HocClass extends React.Component {
+    class HocDevClass extends React.Component {
         render() {
             return (
                 <div className="hoc-component">
@@ -128,7 +128,7 @@ const createHOC = (WrappedComponent, data) => {
             );
         }
     }
-    return HocClass;
+    return HocDevClass;
 };
 
 export const CreatedWithHocComponent = createHOC(StateAndPropsComponent, {
