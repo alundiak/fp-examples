@@ -6,6 +6,7 @@ import {
     MyPureComponent,
     StateComponent,
     StateAndPropsComponent,
+    MySideEffect,
     HocFunc,
     CreatedWithHocComponent,
     MyMemoComponentWithFuncComp,
@@ -30,6 +31,7 @@ const FPExamples = () => (
         <MyPureComponent msg="Pure Component" />
         <StateComponent msg="Component with state" />
         <StateAndPropsComponent msg="Component with state and props" a={3} b={3} />
+        <MySideEffect />
         <HocFunc
             msg1="High Order Functional Component wrapping Pure Component"
             msg2="Pure Component (wrapped by HOC)"

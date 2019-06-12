@@ -86,6 +86,45 @@ export class StateAndPropsComponent extends React.Component {
 }
 
 //
+// Avoid Side Effect
+//
+
+export class MySideEffect extends React.Component {
+    state = {
+        myField: 'My SideEffect 1',
+        flagState: true,
+        onFieldClick: () => { }
+    };
+
+    toggleFunc = (flag) => {
+        if (flag) {
+            this.setState({
+                myField: 'My SideEffect 2',
+                onFieldClick: () => this.toggleFunc(false)
+            });
+        } else {
+            this.setState({ myField: 'My SideEffect 1 (changed)' });
+        }
+    };
+
+    render() {
+        const { myField, flagState, onFieldClick } = this.state;
+
+        return (
+            <div>
+                <span onClick={onFieldClick} title="Click me too">{myField}</span>
+                <button
+                    type="button"
+                    className="btn btn-sm btn-link"
+                    onClick={() => this.toggleFunc(flagState)}>Click me
+                </button>
+            </div>
+        );
+    }
+
+}
+
+//
 // JS:
 // A Higher-Order Function is a FUNCTION that takes another FUNCTION as an input, returns a FUNCTION or does both.
 // ReactJS:
@@ -206,7 +245,7 @@ const reverseShort = PassedComponent => ({ children, ...props }) => (
 
 
 const reverse = (PassedComponent) => {
-    return function ReversedName({ children, ...props }){
+    return function ReversedName({ children, ...props }) {
         return (
             <PassedComponent {...props}>
                 Currying (1 level): {children.split("").reverse().join("")}
