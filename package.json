@@ -1,5 +1,5 @@
 {
-  "name": "fp-examples",
+  "name": "@lundiak/fp-examples",
   "version": "1.0.0",
   "description": "Functional Programming Code Examples in JavaScript & ReactJS",
   "browser": "src/code.js",

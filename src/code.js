@@ -156,9 +156,9 @@ function createGenerator(prefix) {
   return function generateNewID() {
     index++;
     return prefix + index.toString();
-  }
+  };
 }
-let generateNewID = createGenerator("btn");
+const generateNewID = createGenerator("btn");
 // console.log(generateNewID()); //btn1
 // console.log(generateNewID()); //btn2
 // console.log(generateNewID()); //btn3
@@ -189,7 +189,7 @@ function hofCurry() {
 // console.log(hofCurry()('Lundiak1'));
 
 function hofCurry2() {
-  return (lastName) => `Andrii ${lastName}`;
+  return lastName => `Andrii ${lastName}`;
 }
 // console.log(hofCurry2()('Lundiak2'));
 

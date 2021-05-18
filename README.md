@@ -20,6 +20,9 @@ Functional Programming Code Examples in JavaScript, React and Angular.
 # Tools
 - https://github.com/stoeffel/awesome-fp-js
 
+# FP in TypeScript
+- https://gcanti.github.io/fp-ts/
+
 # FP in React
 - https://logrocket.com/blog/react-url-state/
 - https://reactjs.org/docs/components-and-props.html
@@ -30,3 +33,5 @@ Functional Programming Code Examples in JavaScript, React and Angular.
 
 # FP in Angular
 
+# FP 2021
+- https://frontendmasters.com/courses/functional-first-steps/
