@@ -18,10 +18,12 @@ import {
   ReversedName
   // WithAllMyHeart
 } from './code-react';
+
 import {
   ThreeFunctionalComponents,
   UsersAndStocks
 } from './more-reality';
+
 
 const FPExamples = () => (
   <div className="container">
