@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="App">
       <FPExamples />
-      {/* <MoreReality /> */}
+      <MoreReality />
     </div>
   );
 }
