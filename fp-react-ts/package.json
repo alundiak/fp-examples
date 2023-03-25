@@ -53,5 +53,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alundiak/fp-examples/issues"
-  }
+  },
+  "homepage": "https://alundiak.github.io/fp-examples"
 }
