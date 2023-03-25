@@ -225,8 +225,6 @@ let entries = 0;
 
 function fib(x) {
   console.log('entry ', entries++);
-  if (
-
   return fib(x - 1) + fib(x - 2);
 }
 // console.log(fib(5));
