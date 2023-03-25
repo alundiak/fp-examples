@@ -50,7 +50,7 @@ const PageFC = ({ pageName, pageData }) => (
 export const ThreeFunctionalComponents = () => <PageFC {...myData} />;
 
 //
-//  Taken and reworked a bit from:
+// Taken and reworked a bit from:
 // https://appdividend.com/2017/10/24/reactjs-higher-order-components-tutorial/
 //
 
