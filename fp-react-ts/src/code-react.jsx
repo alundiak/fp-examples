@@ -354,11 +354,11 @@ export function CounterFunctionalComponentWithHooks() {
 
 export const MemoVsCallback = ({ msg }) => {
 
-  var num = 1
-  const answerMemoized = useMemo(() => num + 1, [num])
+  let num = 1;
+  const answerMemoized = useMemo(() => num + 1, [num]);
   console.log(answerMemoized); // 2
 
-  var num = 1
+  num = 1;
   const AnswerCallbacked = useCallback(() => num + 1, [num]);
   console.log(AnswerCallbacked); // () => num + 1
 

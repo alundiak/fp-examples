@@ -287,8 +287,9 @@ const fibMemoized = (n, memo) => {
 
 //
 // 3rd-party libraries to memoise/memoize:
+// https://lodash.com/docs/4.17.15#memoize
 // https://github.com/planttheidea/micro-memoize
-//
+// https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e/
 
 //
 // Strict versus non-strict evaluation
