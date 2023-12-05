@@ -7,7 +7,13 @@
 /* eslint array-callback-return: 0 */
 
 //
-// PURE FUNCTIONS
+// https://www.freecodecamp.org/news/memoization-in-javascript-and-react/#javascript-memoization-example
+// Based on the concept of purity in functional programming paradigms, a function is said to be pure if:
+// - Its return value is only determined by its input values
+// - Its return value is always the same for the same input values
+
+//
+// PURE FUNCTIONS - EXAMPLE 1
 //
 
 //
@@ -28,7 +34,7 @@ function add(a, b) {
 //
 
 const mood = 'good';
-// NOT FP
+// NOT PURE FUNCTION
 function add2(a, b) {
   if (mood === 'good') {
     return a + b;
@@ -38,6 +44,25 @@ function add2(a, b) {
 
 // console.log(add2(2, 2));
 
+//
+// PURE FUNCTIONS - EXAMPLE 2
+//
+
+//
+// Another example
+// https://www.geeksforgeeks.org/pure-functions-in-javascript/
+// 
+//
+function calculatePure(productPrice) {
+  return productPrice * 0.05;
+}
+// console.log('result of Pure function execution', calculatePure(15));
+
+let tax = 20;
+function calculateNotPure(productPrice) {
+  return productPrice * (tax / 100) + productPrice;
+}
+// console.log('result of NOT Pure function execution', calculateNotPure(15));
 
 //
 // AVOID SIDE EFFECT
@@ -230,6 +255,42 @@ function fib(x) {
 // console.log(fib(5));
 
 //
+// MEMOIZATION (because of Pure function theory and the need to avoid recalculation, need in caching mechanism)
+//
+// Standard Example of getting Fibonacci number (NON-MEMOIZED)
+// https://www.freecodecamp.org/news/memoization-in-javascript-and-react/#javascript-memoization-example
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144
+const nonMemoizedFib = n => {
+  if (n <= 1) return 1; // to avoid an infinite loop
+  return nonMemoizedFib(n - 1) + nonMemoizedFib(n - 2)
+}
+// console.log(nonMemoizedFib()); // RangeError: Maximum call stack size exceeded
+// console.log(nonMemoizedFib(0)); // => 1
+// console.log(nonMemoizedFib(5)); // => 8
+
+//
+// Memoized Example of getting Fibonacci number (in other words CACHING MECHANISM)
+//
+const fibMemoized = (n, memo) => {
+  memo = memo || {};
+
+  if (memo[n]) return memo[n];
+
+  if (n <= 1) return 1;
+
+  return memo[n] = fibMemoized(n - 1, memo) + fibMemoized(n - 2, memo);
+}
+
+// console.log(fibMemoized()); // RangeError: Maximum call stack size exceeded
+// console.log(fibMemoized(0)); // 1
+// console.log(fibMemoized(5)); // 8
+
+//
+// 3rd-party libraries to memoise/memoize:
+// https://github.com/planttheidea/micro-memoize
+//
+
+//
 // Strict versus non-strict evaluation
 //
 function abc() {
@@ -242,13 +303,13 @@ function abc() {
 // TODO
 
 //
-// SHARED STATE
+// SHARED STATE (because or from PURE FUNCTIONS theory)
 //
 
 // TODO
 
 //
-// In the presence of side effects, a program's behaviour may depend on history; that is, the order of evaluation matters.
+// In the presence of side effects, a program's behavior may depend on history; that is, the order of evaluation matters.
 //
 
 //
@@ -262,7 +323,6 @@ function pure1(a, b) {
   console.log(rndInt);
   console.log(sqrtB);
 }
-
 // pure1(111,144);
 
 // nice example
