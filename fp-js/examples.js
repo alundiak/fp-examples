@@ -35,7 +35,7 @@ function add(a, b) {
 
 const mood = 'good';
 // NOT PURE FUNCTION
-function add2(a, b) {
+function addImpure(a, b) {
   if (mood === 'good') {
     return a + b;
   }
@@ -43,6 +43,23 @@ function add2(a, b) {
 }
 
 // console.log(add2(2, 2));
+
+// Test cases
+const test = (testFunc) => {
+  // should return the sum of two numbers when mood is good
+  (() => {
+    const result = testFunc(3, 5, 'good');
+    // expect(result).toBe(8);
+  })();
+
+  // should return "WTF" when mood is not good
+  (() => {
+    const result = testFunc(3, 5, 'bad');
+    // expect(result).toBe('WTF');
+  })();
+};
+// test(add)
+// test(addImpure)
 
 //
 // PURE FUNCTIONS - EXAMPLE 2
