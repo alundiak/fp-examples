@@ -187,6 +187,38 @@ const aFunc = function () {
 // hof1(aFunc);
 
 //
+// Factory functions
+//
+
+//
+// - A function is a "factory function" when it returns a new object without the use of the `new` keyword!
+// - In functional programming, functions are treated as first-class citizens, meaning they can be passed around as arguments to other functions, 
+// returned as values from other functions, and assigned to variables.
+// - A factory function is a function that returns another function or object. It is often used to create closures, 
+// which are functions that have access to variables from their lexical scope even after the scope has finished executing. 
+//
+function testFactoryFunctions() {
+  function createCounter() {
+    let count = 0;
+
+    function increment() {
+      count++;
+      console.log(count);
+    }
+
+    return increment;
+  }
+
+  // createCounter is a factory function that returns the increment function. 
+  // The increment function, in turn, has access to the count variable from the lexical scope of createCounter. 
+
+  const counter = createCounter();
+  counter(); // Output: 1
+  counter(); // Output: 2
+}
+testFactoryFunctions();
+
+//
 // CLOSURE - High Order Function ? which just return another function?
 // https://en.wikipedia.org/wiki/Closure_(computer_programming)
 // "In programming languages, a closure, also lexical closure or function closure,
